@@ -1,12 +1,12 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { AuthContext } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
     const [mode, setMode] = useState("signup")
     const [error, setError] = useState(null);
-    const { signUp, user, logout, login } = useContext(AuthContext);
+    const { signUp, login } = useAuth();
     
     const navigate = useNavigate();
 
@@ -25,12 +25,10 @@ export default function Auth() {
         
         if (result.success) {
             navigate("/")
-        }
-
-        else {
+        } else {
             setError(result.error);
         }
-        console.log(result)
+ 
     }
     return (
         <div className = "page">
