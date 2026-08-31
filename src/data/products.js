@@ -22,7 +22,7 @@ const products = [
     name: "Laptop Stand",
     price: 49.99,
     image:
-      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1652198144911-4f204ccf35e6?w=500&h=500&fit=crop",
     description:
       "Ergonomic aluminum laptop stand that improves posture and workspace organization. Adjustable height and angle.",
   },
@@ -40,7 +40,7 @@ const products = [
     name: "USB-C Hub",
     price: 39.99,
     image:
-      "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1621669678601-7f4b77e15236?w=500&h=500&fit=crop",
     description:
       "Multi-port USB-C hub with HDMI, USB 3.0, and SD card reader. Expand your laptop connectivity.",
   },
@@ -58,7 +58,7 @@ const products = [
     name: "Monitor Stand",
     price: 79.99,
     image:
-      "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1456213971271-c9b01add56d8?w=500&h=500&fit=crop",
     description:
       "Dual monitor stand with adjustable height and tilt. Frees up desk space and improves ergonomics.",
   },
@@ -67,7 +67,7 @@ const products = [
     name: "Webcam HD",
     price: 89.99,
     image:
-      "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=500&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1762681290673-ba1ad4ea0875?w=500&h=500&fit=crop",
     description:
       "1080p HD webcam with auto-focus and built-in microphone. Ideal for video calls and streaming.",
   },
