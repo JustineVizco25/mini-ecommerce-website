@@ -1,6 +1,5 @@
-import { createContext, useState, useContext } from "react";
-
-export const AuthContext = createContext(null);
+import { useState } from "react";
+import { AuthContext } from "./AuthContextValue";
 
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(localStorage.getItem("currentUserEmail") ? {email:localStorage.getItem("currentUserEmail")} : null);
@@ -9,7 +8,7 @@ export default function AuthProvider({ children }) {
         const users = JSON.parse(localStorage.getItem("users") || "[]")
 
         if(users.find(u => u.email === email)) {
-            return { sucess: false, error: "Email already exists"};
+            return { success: false, error: "Email already exists"};
         }
         const newUser = { email, password };
         users.push(newUser);
@@ -20,7 +19,7 @@ export default function AuthProvider({ children }) {
     }
 
     function login(email, password) {
-        const users = JSON.parse(localStorage.getItem("users") || "()");
+        const users = JSON.parse(localStorage.getItem("users") || "[]");
         const user = users.find((u) => u.email === email && u.password === password);
         
         if (!user) {
@@ -39,12 +38,8 @@ export default function AuthProvider({ children }) {
     }
      
       return (
-            <AuthContext.Provider value = {{ signUp, user, logout, login }}>{ children }</AuthContext.Provider>
+            <AuthContext.Provider value = {{ signUp, user, logout, login }}>
+                { children }
+            </AuthContext.Provider>
       )
-}
-
-export function useAuth() {
-    const context = useContext(AuthContext);
-
-    return context;
 }
