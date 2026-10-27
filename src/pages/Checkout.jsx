@@ -37,6 +37,7 @@ export default function Checkout() {
                         <p className = "order-success-message">
                             Thank you for shopping with ShopHub.
                         </p>
+                        <Link to="/" className="btn btn-primary">Continue shopping</Link>
                     </div>
                 </div>
             </div>
@@ -54,6 +55,9 @@ export default function Checkout() {
                         <h2 className = "checkout-section-title">
                             Order Summary
                         </h2>
+                        {cartItems.length === 0 && (
+                            <p>Your cart is empty. <Link to="/" className="auth-link">Browse products</Link></p>
+                        )}
                         {cartItems.map((item) => (
                             <div className = "checkout-item" key = {item.id}>
                                 <img
@@ -71,9 +75,9 @@ export default function Checkout() {
 
                                 <div className = "checkout-item-controls">
                                     <div className = "quantity-controls">
-                                        <button className = "quantity-btn" onClick = { () => updateQuantity(item.id, item.quantity - 1) }>-</button>
+                                        <button className = "quantity-btn" aria-label={`Decrease quantity of ${item.product.name}`} onClick = { () => updateQuantity(item.id, item.quantity - 1) }>-</button>
                                         <span className = "quantity-value">{item.quantity}</span>
-                                        <button className = "quantity-btn" onClick = { () => updateQuantity(item.id, item.quantity + 1) }>+</button>
+                                        <button className = "quantity-btn" aria-label={`Increase quantity of ${item.product.name}`} onClick = { () => updateQuantity(item.id, item.quantity + 1) }>+</button>
                                     </div>
 
                                     <p className = "checkout-item-total">

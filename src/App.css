@@ -75,11 +75,15 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
+  min-width: 0;
 }
 
 .navbar-greeting {
   color: #666;
   font-size: 0.9rem;
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 
 .navbar-auth-links {
@@ -169,6 +173,7 @@ body {
 .product-card-actions {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .product-detail {
@@ -272,6 +277,23 @@ body {
   text-decoration: none;
   font-weight: 500;
   cursor: pointer;
+}
+
+button.auth-link {
+  background: none;
+  border: none;
+  font: inherit;
+  font-weight: 500;
+}
+
+.demo-note {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+:focus-visible {
+  outline: 3px solid #0056b3;
+  outline-offset: 3px;
 }
 
 .auth-link:hover {

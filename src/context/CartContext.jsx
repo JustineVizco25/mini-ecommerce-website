@@ -1,12 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CartContext } from "./CartContextValue";
 import { getProductById } from "../data/products";
+import { readJsonStorage, writeStorage } from "../utils/storage";
+
+function getStoredCart() {
+    const items = readJsonStorage("cartItems", []);
+    if (!Array.isArray(items)) return [];
+
+    return items.filter((item) =>
+        item && Number.isInteger(item.id) && getProductById(item.id) &&
+        Number.isSafeInteger(item.quantity) && item.quantity > 0
+    );
+}
 
 export default function CartProvider({ children }) {
-    const [cartItems, setCartItems] = useState([]); // id: and quantity:
+    const [cartItems, setCartItems] = useState(getStoredCart);
+
+    useEffect(() => {
+        writeStorage("cartItems", JSON.stringify(cartItems));
+    }, [cartItems]);
      
     function addToCart(productId) {
         const id = Number(productId);
+        if (!getProductById(id)) return;
 
         setCartItems((currentItems) => {
             const existing = currentItems.find((item) => item.id === id);
@@ -41,13 +57,15 @@ export default function CartProvider({ children }) {
 }
 
     function updateQuantity(productId, quantity) {
+        const id = Number(productId);
+        if (!Number.isSafeInteger(quantity)) return;
         if (quantity <= 0) {
             removeFromCart(productId);
             return;
         }
-        setCartItems(
-            cartItems.map((item) => 
-                item.id === productId ? { ...item, quantity } : item
+        setCartItems((currentItems) =>
+            currentItems.map((item) =>
+                item.id === id ? { ...item, quantity } : item
             )
         );
     }
